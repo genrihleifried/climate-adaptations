@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Climate Adaptation </title>
@@ -30,7 +30,7 @@
 
     <form method="get">
         <select name="climate_impact">
-            <option value="">All Climateimpacts</option>
+            <option value="">All climate impacts</option>
             {% for value, label in climate_impact_choices %}
                 <option value="{{ value }}" {% if value == selected_climate_impact %}selected{% endif %}>{{ label }}</option>
             {% endfor %}
@@ -58,7 +58,7 @@
 
     <table>
         <tr>
-            <th>Name</th><th>Climateimpact</th><th>Type</th><th>Sector</th>
+            <th>Name</th><th>Climate impact</th><th>Type</th><th>Sector</th>
         </tr>
         {% for adaptation in adaptations %}
         <tr>

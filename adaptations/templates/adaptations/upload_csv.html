@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>CSV Import - Climate Adaptations</title>
@@ -24,7 +24,8 @@
     </ul>
     {% endif %}
 
-    <p>Expected colums: name, climateimpact, type, sector</p>
+    <p>Expected columns: name, climate_impact, type, sector
+    </p>
 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
