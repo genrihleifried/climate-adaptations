@@ -1,3 +1,9 @@
+"""
+Automation tool: downloads climate adaptation options from the EU Climate-ADAPT
+platform, maps them to this app's data structure and writes a normalised CSV
+that can be imported via the app's CSV upload.
+"""
+
 import csv
 import io
 import json
@@ -66,7 +72,7 @@ CODE_TO_NAME = {
     "non_specific": "Non specific",
 }
 
-
+# Uses the platform's CSV download endpoint (POST)
 def download_csv():
     form_data = {"query": json.dumps(QUERY)}
 
@@ -85,7 +91,8 @@ def split_values(raw):
         return []
     return [v.strip() for v in raw.split(",") if v.strip()]
 
-
+# A single adaptation can address several climate impacts. The data model keeps
+# one filterable value, so the first mapped impact becomes the primary field
 def map_climate_impact(raw):
     codes = []
 
@@ -109,7 +116,7 @@ def map_first(raw, mapping):
         if code:
             return code
     return None
-
+# Skip rows whose required category cannot be mapped
 def process(csv_text):
     reader = csv.DictReader(io.StringIO(csv_text))
 

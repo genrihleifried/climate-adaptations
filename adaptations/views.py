@@ -92,7 +92,7 @@ def upload_csv(request):
                 type_ = (row.get("type") or "").strip()
                 sector = (row.get("sector") or "").strip()
 
-                # Validate required values
+                # Validate each row individually. A single invalid row is skipped and reported
                 if not name:
                     errors.append(f"Row {row_number}: 'name' is missing.")
                     continue
