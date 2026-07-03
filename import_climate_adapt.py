@@ -59,18 +59,6 @@ SECTOR_MAP = {
     "Non specific": "non_specific",
 }
 
-CODE_TO_NAME = {
-    "heat": "Extreme heat",
-    "flooding": "Flooding",
-    "drought": "Drought",
-    "storm": "Storm",
-    "wildfire": "Wildfire",
-    "water_scarcity": "Water scarcity",
-    "extreme_cold": "Extreme cold",
-    "ice_and_snow": "Ice and snow",
-    "sea_level_rise": "Sea level rise",
-    "non_specific": "Non specific",
-}
 
 # Uses the platform's CSV download endpoint (POST)
 def download_csv():
@@ -105,9 +93,9 @@ def map_climate_impact(raw):
         return None, ""
 
     primary = codes[0]
-    additional = ", ".join(CODE_TO_NAME[c] for c in codes[1:])
 
-    return primary, additional
+
+    return primary
 
 
 def map_first(raw, mapping):
@@ -130,7 +118,7 @@ def process(csv_text):
             skipped += 1
             continue
 
-        climate_impact, additional_impacts = map_climate_impact(
+        climate_impact = map_climate_impact(
             row.get("Climate impact", "")
         )
 
@@ -147,7 +135,6 @@ def process(csv_text):
         output_rows.append({
             "name": name,
             "climate_impact": climate_impact,
-            "additional_impacts": additional_impacts,
             "type": adaptation_type,
             "sector": sector,
         })
@@ -158,7 +145,6 @@ def write_csv(rows):
     fieldnames = [
         "name",
         "climate_impact",
-        "additional_impacts",
         "type",
         "sector",
     ]

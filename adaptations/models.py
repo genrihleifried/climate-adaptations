@@ -35,7 +35,6 @@ SECTOR_CHOICES = [
 class ClimateAdaptation(models.Model):
     name = models.CharField(max_length=200)
     climate_impact = models.CharField(max_length=30, choices=CLIMATE_IMPACT_CHOICES)
-    additional_impacts = models.CharField(max_length=200, blank=True)
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
     sector = models.CharField(max_length=30, choices=SECTOR_CHOICES)
 
