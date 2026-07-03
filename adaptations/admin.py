@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import ClimateAdaptations
+from .models import ClimateAdaptation
 
-admin.site.register(ClimateAdaptations)
+admin.site.register(ClimateAdaptation)

@@ -1,44 +1,43 @@
 from django.db import models
 
-from django.db import models
-
-KLIMAFOLGE_CHOICES = [
-    ('hitze', 'Hitze'),
-    ('hochwasser', 'Hochwasser'),
-    ('duerre', 'Dürre'),
-    ('sturm', 'Sturm'),
-    ('waldbrand', 'Waldbrand'),
+CLIMATE_IMPACT_CHOICES = [
+    ('heat', 'Extreme heat'),
+    ('flooding', 'Flooding'),
+    ('drought', 'Drought'),
+    ('storm', 'Storm'),
+    ('wildfire', 'Wildfire'),
+    ('water_scarcity', 'Water scarcity'),
+    ('extreme_cold', 'Extreme cold'),
+    ('ice_and_snow', 'Ice and snow'),
+    ('sea_level_rise', 'Sea level rise'),
+    ('non_specific', 'Non specific'),
 ]
 
-TYP_CHOICES = [
-    ('naturbasiert', 'Naturbasiert'),
-    ('baulich', 'Baulich-technisch'),
-    ('organisatorisch', 'Organisatorisch'),
+TYPE_CHOICES = [
+    ('nature_based', 'Nature-based'),
+    ('structural', 'Structural / Technical'),
+    ('organisational', 'Organisational'),
 ]
 
-SEKTOR_CHOICES = [
-    ('stadt', 'Stadt & Infrastruktur'),
-    ('landwirtschaft', 'Landwirtschaft'),
-    ('wasser', 'Wasser'),
-    ('gesundheit', 'Gesundheit'),
-    ('energie', 'Energie'),
+SECTOR_CHOICES = [
+    ('urban', 'Urban & infrastructure'),
+    ('agriculture', 'Agriculture'),
+    ('water', 'Water management'),
+    ('health', 'Health'),
+    ('energy', 'Energy'),
+    ('biodiversity', 'Biodiversity protection'),
+    ('forestry', 'Forestry'),
+    ('tourism', 'Tourism'),
+    ('disaster_risk', 'Disaster risk reduction'),
+    ('non_specific', 'Non specific'),
 ]
 
-KOSTEN_CHOICES = [
-    ('niedrig', 'Niedrig'),
-    ('mittel', 'Mittel'),
-    ('hoch', 'Hoch'),
-]
-
-class ClimateAdaptations(models.Model):
+class ClimateAdaptation(models.Model):
     name = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
-    klimafolge = models.CharField(max_length=20, choices=KLIMAFOLGE_CHOICES)
-    typ = models.CharField(max_length=20, choices=TYP_CHOICES)
-    sektor = models.CharField(max_length=20, choices=SEKTOR_CHOICES)
-    region = models.CharField(max_length=200, blank=True)
-    kosten = models.CharField(max_length=10, choices=KOSTEN_CHOICES)
-    quelle = models.URLField(blank=True)
+    climate_impact = models.CharField(max_length=30, choices=CLIMATE_IMPACT_CHOICES)
+    additional_impacts = models.CharField(max_length=200, blank=True)
+    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    sector = models.CharField(max_length=30, choices=SECTOR_CHOICES)
 
     def __str__(self):
         return self.name
